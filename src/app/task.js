@@ -1,38 +1,42 @@
 import React from "react";
 import { render } from "react-dom";
-import Hello from "./index.js";
 import PropTypes from 'prop-types';
-import "../styles.css";
 
 export class Task extends React.Component {
 
 
-   onCheckClick = (e) => {
+    onCheckClick = (e) => {
      e.preventDefault();
-     this.props.onCheckHandler(this.props.id)
-   };
+       this.props.onCheckClick(this.props.task.id);
+     };
 
     onCleanClick = (e) => {
         e.preventDefault();
-        this.props.onCleanClick(this.props.id)
+       this.props.onCleanClick(this.props.task.id);
     };
 
 
-    render() {
-        console.log(this.state);
-        return (<form>
-            <label>
-                {this.props.title}
-                <button onClick={this.onCheckClick}>Check</button>
-                <button onClick={this.onCleanClick}>Clean</button>
-            </label>
-        </form>)
+
+    render(){
+        const background =   this.props.task.checked ? 'green' : 'orange';
+        return (
+            <div>
+                <label>
+                    <div className = {background}>
+                    {this.props.task.title}
+                    </div>
+                    <button onClick={this.onCheckClick}>{this.props.task.checked ?'Uncheck' : 'Check'}</button>
+                    <button  onClick={this.onCleanClick}>CLEAN</button>
+                </label>
+            </div>)
+
     }
+
+
 }
 
  Task.propTypes ={
-        title:PropTypes.string,
-        id:PropTypes.string,
+        task:PropTypes.object,
         onCheckClick:PropTypes.func,
         onCleanClick:PropTypes.func,
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import  Task  from "./task.js";
+import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
-import Hello from "./index.js";
-import "../styles.css";
+import {Task} from "./task";
+
 
 
 export class App extends React.Component {
@@ -11,54 +11,68 @@ export class App extends React.Component {
         this.state = {
             inputData : '',
             tasks: {},
-
-
         };
     }
-    onInputChange = (e) =>
-    {
+    onInputChange = (e) => {
         this.setState({inputData: e.target.value})
     };
 
 
     onClickHandler = (e) => {
         e.preventDefault();
-        console.log ('click')
-        };
+        this.setState({tasks: {}});
+
+    };
 
     onClickHandlerDone = (e) => {
-            e.preventDefault();
-            console.log ('clean click')
+        e.preventDefault();
+        let tasks = {...this.state.tasks};
+        Object.values(this.state.tasks).map((task) => {
+             if (task.checked) {
+                delete tasks[task.id]
+            }
+        });
+         this.setState({tasks});
+    };
+
+
+    onCheckClick = (taskId) => {
+        const task = {...this.state.tasks[taskId]};
+        const checkedTask = {...task, checked: !task.checked};
+        this.setState({tasks:{...this.state.tasks, [taskId]: checkedTask}});
+    };
+
+    onCleanClick = (taskId) => {
+        const tasks = {...this.state.tasks};
+        delete tasks[taskId];
+        this.setState({tasks});
+        console.log (taskId)
     };
 
     onClickHandlerAdd = (e) => {
         e.preventDefault();
         var taskId = Math.random().toString(36).substring(7);
-        var newTask = {id: taskId, title: this.state.inputData };
-        this.setState({tasks: {...this.state.tasks, [taskId]: newTask}});
-        console.log(taskId)
-        console.log({tasks: {...this.state.tasks, [taskId]: newTask}})
-   };
-
-   /* onCheckHandler = (e) => {
-        this.state.
-    }*/
-
-
+        var newTask = {id: taskId, title: this.state.inputData, checked: false};
+       this.setState({tasks: {...this.state.tasks, [taskId]: newTask}, inputData:''});
+    };
 
 
     render()
     {
-        console.log(this.state)
-       return (<form>
-            <label >
-                <button onClick={this.onClickHandler}>Clean all</button>
-                <button onClick={this.onClickHandlerDone}>Clean done</button>
-                <input value={this.state.inputData} onChange={this.onInputChange}/>
-                {<button onClick={this.onClickHandlerAdd}> Add task</button>}
-
-            </label>
-        </form>)
+       return (
+            <div>
+                <form>
+                    <label >
+                        <button  onClick={this.onClickHandler}>CLEAN ALL</button>
+                        <button  onClick={this.onClickHandlerDone}>CLEAN DONE</button>
+                        <input  value={this.state.inputData} onChange={this.onInputChange}/>
+                        <button  onClick={this.onClickHandlerAdd}>ADD </button>
+                    </label>
+                </form>
+                <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
+                             tasks={this.state.tasks}/>
+            </div>
+       )
     }
 }
 
