@@ -22,7 +22,6 @@ export class TaskWrapper extends React.Component {
     });
 
 
-
     render () {
         return (
             <div>

@@ -2,6 +2,38 @@ import React from "react";
 import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
 import {Task} from "./task";
+import styled from "styled-components";
+
+const Body = styled.body`
+       text-align: center;
+       background: #cce2ff; 
+       margin: auto;
+       width: 950px;
+       height: auto;
+       margin-top: 40px;
+       margin-bottom: 30px;
+       padding-bottom: 20px;
+       padding-top: 30px;
+`;
+
+
+const Button = styled.button`
+  border-radius: 6px;
+  padding: 0.25em 2em;
+  margin: 0 0.6em;
+  background: transparent;
+  color:#003087;
+  border: 2px solid #003087;
+`;
+
+const Input = styled.input`
+  padding: 0.47em;
+  margin: 0.5em;
+  color: #003087;
+  background:#fff ;
+  border: none;
+  border-radius: 3px;
+`;
 
 
 
@@ -60,18 +92,18 @@ export class App extends React.Component {
     render()
     {
        return (
-            <div>
+            <Body>
                 <form>
-                    <label >
-                        <button  onClick={this.onClickHandler}>CLEAN ALL</button>
-                        <button  onClick={this.onClickHandlerDone}>CLEAN DONE</button>
-                        <input  value={this.state.inputData} onChange={this.onInputChange}/>
-                        <button  onClick={this.onClickHandlerAdd}>ADD </button>
+                    <label>
+                            <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
+                            <Button onClick={this.onClickHandlerDone}>CLEAN DONE</Button>
+                            <Input value={this.state.inputData} onChange={this.onInputChange}/>
+                            <Button onClick={this.onClickHandlerAdd}>ADD </Button>
                     </label>
                 </form>
                 <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
                              tasks={this.state.tasks}/>
-            </div>
+            </Body>
        )
     }
 }
