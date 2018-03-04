@@ -1,9 +1,9 @@
 import React from "react";
 import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
-import {Task} from "./task";
 import styled from "styled-components";
-//import {createStore} from "redux";
+import {Provider} from 'react-redux';
+import {store} from './store.js';
 
 
 const Div = styled.div`
@@ -34,10 +34,6 @@ const Input = styled.input`
   border: none;
   border-radius: 3px;
 `;
-
-
-//const store = createStore(reducer);
-
 
 export class App extends React.Component {
     constructor(props) {
@@ -85,8 +81,8 @@ export class App extends React.Component {
 
     onClickHandlerAdd = (e) => {
         e.preventDefault();
-        var taskId = Math.random().toString(20).substring(2);
-        var newTask = {id: taskId, title: this.state.inputData, checked: false};
+        const taskId = Math.random().toString(20).substring(2);
+        const newTask = {id: taskId, title: this.state.inputData, checked: false};
        this.setState({tasks: {...this.state.tasks, [taskId]: newTask}, inputData:''});
     };
 
@@ -94,23 +90,23 @@ export class App extends React.Component {
     render()
     {
        return (
-           <Div>
-                <form>
-                    <label>
-                            <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
-                            <Button onClick={this.onClickHandlerDone}>CLEAN DONE</Button>
-                            <Input value={this.state.inputData} onChange={this.onInputChange}/>
-                            <Button onClick={this.onClickHandlerAdd}>ADD </Button>
-                    </label>
-                </form>
-                <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
-                             tasks={this.state.tasks}/>
-            </Div>
+           <Provider store={store}>
+               <Div>
+                    <form>
+                        <label>
+                                <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
+                                <Button onClick={this.onClickHandlerDone}>CLEAN DONE</Button>
+                                <Input value={this.state.inputData} onChange={this.onInputChange}/>
+                                <Button onClick={this.onClickHandlerAdd}>ADD </Button>
+                        </label>
+                    </form>
+                    <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
+                                 tasks={this.state.tasks}/>
+                </Div>
+           </Provider>
        )
     }
 }
 
-
-//export default store;
 
 render (<App />, document.getElementById("root"));

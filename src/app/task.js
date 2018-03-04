@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 
-
 const Button = styled.button`
   border-radius: 6px;
   font-weight: bold;
@@ -13,7 +12,7 @@ const Button = styled.button`
   background: transparent;
   color:#003087;
   border: 2px solid #003087;
-  `;
+ `;
 
  const Title = styled.span`
     padding: 0.29em;
@@ -32,15 +31,7 @@ const Button = styled.button`
     border: 1px solid #003087;
     border-radius: 3px;
 `;
-/*const Buttonclick = styled.button`
-    background:${props => props.checked ? 'green' : 'orange'};
-    border-radius: 6px;
-    padding: 0.25em 2em;
-    margin: 0 0.6em;
-    background: transparent;
-    color:#003087;
-    border: 2px solid #003087;
-`;*/
+
 
 export class Task extends React.Component {
 
@@ -56,13 +47,13 @@ export class Task extends React.Component {
     };
 
     render(){
-       const Title = this.props.task.checked (TitleChecked);
+       const title = this.props.task.checked ? (<TitleChecked>{this.props.task.title}</TitleChecked>):
+           (<Title>{this.props.task.title}</Title>);
 
         return (
             <div>
                 <label>
-                    <Title>
-                        {this.props.task.checked(TitleChecked)}</Title>
+                    {title}
                         <span>
                         <Button onClick={this.onCheckClick}>{this.props.task.checked ?'UN-CHECK' : 'CHECK'}</Button>
                         </span>
