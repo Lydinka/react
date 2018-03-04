@@ -34,9 +34,6 @@ const Click = styled.click`
     border: 2px solid #003087;
 `;
 
-
-
-
 export class Task extends React.Component {
 
 
