@@ -3,26 +3,26 @@ import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
 import {Task} from "./task";
 import styled from "styled-components";
+//import {createStore} from "redux";
 
-const Body = styled.body`
-       text-align: center;
-       background: #cce2ff; 
-       margin: auto;
-       width: 950px;
-       height: auto;
-       margin-top: 40px;
-       margin-bottom: 30px;
-       padding-bottom: 20px;
-       padding-top: 30px;
+
+const Div = styled.div`
+   text-align: center;
+   background: #cce2ff; 
+   max-width: 990px;
+   margin-top: 40px;
+   margin-bottom: 30px;
+   padding-bottom: 20px;
+   padding-top: 30px;
 `;
-
 
 const Button = styled.button`
   border-radius: 6px;
   padding: 0.25em 2em;
   margin: 0 0.6em;
-  background: transparent;
-  color:#003087;
+  background: #003087;
+  color: #fff;
+  font-weight: bold;
   border: 2px solid #003087;
 `;
 
@@ -35,6 +35,8 @@ const Input = styled.input`
   border-radius: 3px;
 `;
 
+
+//const store = createStore(reducer);
 
 
 export class App extends React.Component {
@@ -83,7 +85,7 @@ export class App extends React.Component {
 
     onClickHandlerAdd = (e) => {
         e.preventDefault();
-        var taskId = Math.random().toString(36).substring(7);
+        var taskId = Math.random().toString(20).substring(2);
         var newTask = {id: taskId, title: this.state.inputData, checked: false};
        this.setState({tasks: {...this.state.tasks, [taskId]: newTask}, inputData:''});
     };
@@ -92,7 +94,7 @@ export class App extends React.Component {
     render()
     {
        return (
-            <Body>
+           <Div>
                 <form>
                     <label>
                             <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
@@ -103,11 +105,12 @@ export class App extends React.Component {
                 </form>
                 <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
                              tasks={this.state.tasks}/>
-            </Body>
+            </Div>
        )
     }
 }
 
 
+//export default store;
 
 render (<App />, document.getElementById("root"));

@@ -4,25 +4,36 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 
+
 const Button = styled.button`
   border-radius: 6px;
+  font-weight: bold;
   padding: 0.25em 2em;
-  margin: 0 0.6em;
+  margin: 0.5em;
   background: transparent;
   color:#003087;
   border: 2px solid #003087;
-`
+  `;
 
  const Title = styled.span`
-    padding: 0.5em;
+    padding: 0.29em;
     margin: 0.5em;
     color: #003087;
     background: #fff; 
+    border: 1px solid #003087;
     border-radius: 3px;
-   text-align: right;
  `;
 
-const click = styled.button``;
+const Click = styled.click`
+    background:${props => props.checked ? 'green' : 'orange'};
+    border-radius: 6px;
+    padding: 0.25em 2em;
+    margin: 0 0.6em;
+    background: transparent;
+    color:#003087;
+    border: 2px solid #003087;
+`;
+
 
 
 
@@ -40,25 +51,24 @@ export class Task extends React.Component {
     };
 
     render(){
-        const click =  this.props.task.checked ? 'green' : 'orange';
+        const click = this.props.task.checked ? 'green' : 'orange';
         return (
             <div>
                 <label>
                     <Title>
                         {this.props.task.title}</Title>
-                        <Button onClick={this.onCheckClick}>{this.props.task.checked ?'Uncheck' : 'Check'}</Button>
+                        <span>
+                        <Click onClick={this.onCheckClick}>{this.props.task.checked ?'UN-CHECK' : 'CHECK'}</Click>
+                        </span>
                         <Button  onClick={this.onCleanClick}>CLEAN</Button>
-
                 </label>
-            </div>)
-
+            </div>
+        )
     }
-
-
 }
 
  Task.propTypes ={
         task:PropTypes.object,
         onCheckClick:PropTypes.func,
         onCleanClick:PropTypes.func,
-}
+};
