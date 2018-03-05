@@ -1,1 +1,20 @@
+.main {
+    background-color: #cce2ff;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 5px 10px;
+    height: 100%;
+   }
 
+
+.task {
+    float: right;
+    clear: both;
+
+}
+
+
+/*.lol {
+    background-color: cyan;
+}*/

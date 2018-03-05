@@ -2,19 +2,11 @@ import React from "react";
 import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
 import styled from "styled-components";
+import "../styles.css";
 import {Provider} from 'react-redux';
 import {store} from './store.js';
 
 
-const Div = styled.div`
-   text-align: center;
-   background: #cce2ff; 
-   max-width: 990px;
-   margin-top: 40px;
-   margin-bottom: 30px;
-   padding-bottom: 20px;
-   padding-top: 30px;
-`;
 
 const Button = styled.button`
   border-radius: 6px;
@@ -32,7 +24,7 @@ const Input = styled.input`
   color: #003087;
   background:#fff ;
   border: none;
-  border-radius: 3px;
+  border-radius: 6px;
 `;
 
 export class App extends React.Component {
@@ -91,8 +83,8 @@ export class App extends React.Component {
     {
        return (
            <Provider store={store}>
-               <Div>
-                    <form>
+               <div className='main'>
+                   <form>
                         <label>
                                 <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
                                 <Button onClick={this.onClickHandlerDone}>CLEAN DONE</Button>
@@ -100,9 +92,10 @@ export class App extends React.Component {
                                 <Button onClick={this.onClickHandlerAdd}>ADD </Button>
                         </label>
                     </form>
+
                     <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
                                  tasks={this.state.tasks}/>
-                </Div>
+                </div>
            </Provider>
        )
     }

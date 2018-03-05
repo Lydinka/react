@@ -1,36 +1,41 @@
 import React from "react";
-import { render } from "react-dom";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 
 
+
 const Button = styled.button`
-  border-radius: 6px;
-  font-weight: bold;
-  padding: 0.25em 2em;
-  margin: 0.5em;
-  background: transparent;
-  color:#003087;
-  border: 2px solid #003087;
- `;
+    font-weight: bold;
+    color:#fff;
+    background: #003087;
+    border: 2px solid #003087;
+    border-radius: 6px;
+    padding: 5px 20px;
+    margin: 6px;
+    `;
 
  const Title = styled.span`
-    padding: 0.29em;
-    margin: 0.5em;
-    color: #003087;
-    background: orange;
-    border: 1px solid #003087;
-    border-radius: 3px;
-`;
+    font-weight: bold;
+    color: #fff;
+    background: #ff9233;
+    border-radius: 6px;
+    padding: 5px 60px;
+    margin: 10px;
+    width: 35%; 
+     border: 1px solid #fff;
+  `;
 
  const TitleChecked = styled.span`
-    padding: 0.29em;
-    margin: 0.5em;
-    color: #003087;
-    background: green;
-    border: 1px solid #003087;
-    border-radius: 3px;
-`;
+    font-weight: bold;
+    border-radius: 6px;
+    border-sizing: border-box;
+    padding: 5px 60px;
+    width:35%;
+    margin: 10px;
+    color: #fff;
+    background: #2DF98C;
+  border: 1px solid #fff;
+  `;
 
 
 export class Task extends React.Component {
@@ -51,7 +56,7 @@ export class Task extends React.Component {
            (<Title>{this.props.task.title}</Title>);
 
         return (
-            <div>
+            <div className='task'>
                 <label>
                     {title}
                         <span>

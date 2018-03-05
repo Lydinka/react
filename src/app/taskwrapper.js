@@ -1,6 +1,5 @@
  import React from "react";
 import  {Task} from "./task.js";
-import { render } from "react-dom";
 import PropTypes from "prop-types";
 
 export class TaskWrapper extends React.Component {
