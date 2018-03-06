@@ -1,41 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import styled from "styled-components";
-
-
-
-const Button = styled.button`
-    font-weight: bold;
-    color:#fff;
-    background: #003087;
-    border: 2px solid #003087;
-    border-radius: 6px;
-    padding: 5px 20px;
-    margin: 6px;
-    `;
-
- const Title = styled.span`
-    font-weight: bold;
-    color: #fff;
-    background: #ff9233;
-    border-radius: 6px;
-    padding: 5px 60px;
-    margin: 10px;
-    width: 35%; 
-     border: 1px solid #fff;
-  `;
-
- const TitleChecked = styled.span`
-    font-weight: bold;
-    border-radius: 6px;
-    border-sizing: border-box;
-    padding: 5px 60px;
-    width:35%;
-    margin: 10px;
-    color: #fff;
-    background: #2DF98C;
-  border: 1px solid #fff;
-  `;
 
 
 export class Task extends React.Component {
@@ -52,25 +16,24 @@ export class Task extends React.Component {
     };
 
     render(){
-       const title = this.props.task.checked ? (<TitleChecked>{this.props.task.title}</TitleChecked>):
-           (<Title>{this.props.task.title}</Title>);
+       const checkedClass = this.props.task.checked ? 'checked' : '';
 
-        return (
-            <div className='task'>
-                <label>
-                    {title}
-                        <span>
-                        <Button onClick={this.onCheckClick}>{this.props.task.checked ?'UN-CHECK' : 'CHECK'}</Button>
-                        </span>
-                        <Button  onClick={this.onCleanClick}>CLEAN</Button>
-                </label>
+        return <div className='container'>
+
+            <div className='wra'>
+
+            <span className={'title '+checkedClass}> {this.props.task.title} </span>
+            <span>
+                <button onClick={this.onCheckClick}>{this.props.task.checked ? 'UN-CHECK' : 'CHECK'}</button>
+            </span>
+            <button onClick={this.onCleanClick}>CLEAN</button>
             </div>
-        )
+        </div>
     }
 }
 
- Task.propTypes ={
-        task:PropTypes.object,
+Task.propTypes ={
+    task:PropTypes.object,
         onCheckClick:PropTypes.func,
         onCleanClick:PropTypes.func,
 };

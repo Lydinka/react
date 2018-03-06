@@ -1,0 +1,16 @@
+form {
+    margin-top: 350px;
+
+}
+
+.titleinput {
+    padding: 0.499em;
+    margin: 0.5em;
+    color: #003087;
+    background: #f1f1f2;
+    border: none;
+    border-radius: 6px;
+    width: 200px;
+}
+
+

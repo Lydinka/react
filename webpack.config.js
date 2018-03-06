@@ -1,35 +1,67 @@
-const path = require("path");
+const path = require('path');
 
-const DIST_DIR = path.resolve(__dirname, "dist");
-const SRC_DIR = path.resolve(__dirname, "src");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); //  -> ADDED IN THIS STEP
 
-const config = {
-    entry: SRC_DIR + "/app/index.js",
+// Constant with our paths
+const paths = {
+    DIST: path.resolve(__dirname, 'dist'),
+    SRC: path.resolve(__dirname, 'src'),
+    JS: path.resolve(__dirname, 'src/app'),
+};
+
+// Webpack configuration
+module.exports = {
+    entry: path.join(paths.JS, 'index.js'),
     output: {
-        path: DIST_DIR + "/app",
-        filename: "bundle.js",
-        publicPath: "/app/"
+        path: paths.DIST,
+        filename: 'app.bundle.js',
     },
+    // Loaders configuration
+    // We are telling webpack to use "babel-loader" for .js and .jsx files
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js?/,
-                include: SRC_DIR,
-                loader: "babel-loader",
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
                 query: {
                     presets: ["react", "es2015", "stage-2"]
                 }
-
             },
+            // CSS loader for CSS files
+            // Files will get handled by css loader and then passed to the extract text plugin
+            // which will write it to the file we defined above
 
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: ExtractTextPlugin.extract({
+                    use: 'css-loader',
+                }),
             }
+        ],
+    },
+    // Enable importing JS files without specifying their's extension
+    //
+    // So we can write:
+    // import MyComponent from './my-component';
+    //
+    // Instead of:
+    // import MyComponent from './my-component.jsx';
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
+    // Tell webpack to use html plugin
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.join(paths.SRC, 'index.html'),
+            title: 'Redux Workshop',
+            minify: {
+                removeAttributeQuotes: true,
+                collapseWhitespace:true
+            }
+        }),
 
-        ]
-    }
+        new ExtractTextPlugin('main.css'), // CSS will be extracted to this bundle file -> ADDED IN THIS STEP
+    ]
 };
-
-
-module.exports = config;

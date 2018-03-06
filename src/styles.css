@@ -1,20 +1,28 @@
-.main {
-    background-color: #cce2ff;
-    text-align: center;
-    width: 100%;
+
+.container {
+    background-color: transparent;
+    width: 50%;
     margin: auto;
-    padding: 5px 10px;
-    height: 100%;
-   }
-
-
-.task {
-    float: right;
-    clear: both;
-
+    text-align: right;
 }
 
+.task {
+    background-color: #ffffff;
+    color: #000;
+    margin: 20px;
+}
 
-/*.lol {
-    background-color: cyan;
-}*/
+.title {
+    font-weight: bold;
+    color: #fff;
+    background: #fdd475;
+    border-radius: 6px;
+    padding: 0.29em;
+    margin: 0.5em;
+    width: 35%;
+    border: 1px solid #fff;
+}
+
+.title.checked {
+    background: #b3de81;
+}

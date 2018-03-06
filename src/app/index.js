@@ -1,31 +1,16 @@
 import React from "react";
 import {TaskWrapper} from "./taskwrapper.js";
 import { render } from "react-dom";
-import styled from "styled-components";
 import "../styles.css";
 import {Provider} from 'react-redux';
 import {store} from './store.js';
+import "../main.css";
+import "../maintitle.css";
+import {setTaskAction} from './actions/task.actions'
+import {Task} from "./task";
+import PropTypes from "prop-types";
 
 
-
-const Button = styled.button`
-  border-radius: 6px;
-  padding: 0.25em 2em;
-  margin: 0 0.6em;
-  background: #003087;
-  color: #fff;
-  font-weight: bold;
-  border: 2px solid #003087;
-`;
-
-const Input = styled.input`
-  padding: 0.47em;
-  margin: 0.5em;
-  color: #003087;
-  background:#fff ;
-  border: none;
-  border-radius: 6px;
-`;
 
 export class App extends React.Component {
     constructor(props) {
@@ -76,6 +61,8 @@ export class App extends React.Component {
         const taskId = Math.random().toString(20).substring(2);
         const newTask = {id: taskId, title: this.state.inputData, checked: false};
        this.setState({tasks: {...this.state.tasks, [taskId]: newTask}, inputData:''});
+       this.props.setTaskAction(this.state.inputData);
+
     };
 
 
@@ -86,10 +73,12 @@ export class App extends React.Component {
                <div className='main'>
                    <form>
                         <label>
-                                <Button onClick={this.onClickHandler}>CLEAN ALL</Button>
-                                <Button onClick={this.onClickHandlerDone}>CLEAN DONE</Button>
-                                <Input value={this.state.inputData} onChange={this.onInputChange}/>
-                                <Button onClick={this.onClickHandlerAdd}>ADD </Button>
+                            <div>
+                                <button   onClick={this.onClickHandler}>CLEAN ALL</button>
+                                <button  onClick={this.onClickHandlerDone}>CLEAN DONE</button>
+                                <input  className='titleinput' value={this.state.inputData} onChange={this.onInputChange}/>
+                                <button  className='add' onClick={this.onClickHandlerAdd}>ADD </button>
+                            </div>
                         </label>
                     </form>
 
@@ -100,6 +89,13 @@ export class App extends React.Component {
        )
     }
 }
+
+
+App.propTypes ={
+    setTaskAction: PropTypes.func,
+};
+
+
 
 
 render (<App />, document.getElementById("root"));

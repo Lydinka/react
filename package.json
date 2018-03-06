@@ -4,19 +4,18 @@
   "description": "Some basic ReactJS",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
-    "build": "webpack -d && xcopy \"src/index.html\" \"dist/\" /F /Y && webpack-dev-server --content-base src/ --inline",
-    "build:prod": "webpack -p && xcopy \"src/index.html\" \"dist/\" /F /Y"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "keywords": [
     "reactjs"
   ],
-  "author": "Maximilian Schwarzmueller",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
@@ -24,17 +23,17 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.11.0",
-    "css-loader": "^0.28.10",
-    "extract-text-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.20.2",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   }
 }
