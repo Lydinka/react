@@ -29,6 +29,11 @@ module.exports = {
                     presets: ["react", "es2015", "stage-2"]
                 }
             },
+            {
+                test: /\.jpg$/,
+                loader: "file-loader?mimetype=image/jpg&publicPath=../&name=./media/[hash].[ext]"
+            },
+
             // CSS loader for CSS files
             // Files will get handled by css loader and then passed to the extract text plugin
             // which will write it to the file we defined above

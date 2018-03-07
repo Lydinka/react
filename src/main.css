@@ -1,14 +1,16 @@
 html {
     height: 100%;
-   /* background: url('.../img/beach-2603706_1280.jpg');*/
-    background-repeat  : no-repeat;
-    background-position: center;
+
 }
 
 body {
+    background-image: url('./app/img/img.jpg');
     height: 100%;
-    margin: 0;
+
     background-color: #1995ad;
+    background-repeat  : no-repeat;
+    background-position: center;
+    background-size: auto;
     }
 
 #root {
