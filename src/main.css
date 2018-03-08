@@ -1,20 +1,22 @@
 html {
     height: 100%;
+    margin: 0;
+    padding: 0;
 
 }
 
 body {
     background-image: url('./app/img/img.jpg');
     height: 100%;
-
-    background-color: #1995ad;
+    max-width: 100%;
     background-repeat  : no-repeat;
     background-position: center;
-    background-size: auto;
+    background-size: cover;
     }
 
 #root {
     height: 100%;
+    margin-top: 20px;
     }
 
 
@@ -22,7 +24,6 @@ body {
     text-align: center;
     width: 100%;
     margin: auto;
-    padding: 5px 10px;
     height: 100%;
     }
 
@@ -30,21 +31,22 @@ body {
 button {
     font-weight: bold;
     color:#f1f1f2;
-    background: #003087;
-    border: 2px solid #003087;
+    background: #8e95c3;;
+    border: 2px solid #8e95c3;;
     border-radius: 6px;
     padding: 5px 20px;
-    margin: 6px;
+    margin: 5px;
    }
 
 
 button:hover {
-    background-color:#f1f1f2;
-    color:#003087;
-    box-shadow: 0 0 10px red;
+    background-color:#FFB6C1;
+    color: #7f7580;
+    box-shadow: 0 0 10px #ffc0cb;
+    border: 2px solid transparent;
 }
 
 .add {
-    width: 150px;
+    width: 200px;
 
 }

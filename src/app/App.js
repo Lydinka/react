@@ -62,16 +62,11 @@ export class App extends React.Component {
     {
         return (
             <div className='main'>
-                <form>
-                    <label>
-                        <div>
-                            <button  key='cleanAll' onClick={this.onClickHandler}>CLEAN ALL</button>
-                            <button  key='cleanDone'onClick={this.onClickHandlerDone}>CLEAN DONE</button>
+                            <button className='cleanButton' key='cleanAll' onClick={this.onClickHandler}>CLEAN ALL</button>
+                            <button key='cleanDone'onClick={this.onClickHandlerDone}>CLEAN DONE</button>
                             <input  key='data' className='titleinput' value={this.state.inputData} onChange={this.onInputChange}/>
                             <button key='add' className='add' onClick={this.onClickHandlerAdd}>ADD </button>
-                        </div>
-                    </label>
-                </form>
+
 
                 <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
                              tasks={this.props.tasks}/>
