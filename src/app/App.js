@@ -1,13 +1,10 @@
 import React from "react";
-import {TaskWrapper} from "./taskwrapper.js";
+import TaskWrapper from "./TaskWrapper";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {setTaskAction, removeAllTasksAction, removeOneTasksAction, checkTasksAction, removeAllCheckedTasksAction} from "./actions/task.actions";
+import {setTaskAction, removeTasksAction, checkTasksAction} from "./actions/task.actions";
 import PropTypes from 'prop-types';
-
-import '../styles.css';
-import '../main.css';
-import '../maintitle.css';
+import './styles/styles.css';
 
 
 export class App extends React.Component {
@@ -15,39 +12,34 @@ export class App extends React.Component {
         super(props);
         this.state = {
             inputData : '',
-            };
+        };
     }
 
     onInputChange = (e) => {
         this.setState({inputData: e.target.value})
     };
 
-//CLEAN ALL - buttony s eventom sa nachadzaju v tomto componente
-    onClickHandler = (e) => {
+    onClickHandlerCleanAll = (e) => {
         e.preventDefault();
-        this.props.removeAllTasksAction();
-
+        const taskIds = Object.keys(this.props.tasks);
+        this.props.removeTasksAction(taskIds);
     };
 
-    //CLEAN DONE
     onClickHandlerDone = (e) => {
         e.preventDefault();
-        this.props.removeAllCheckedTasksAction();
+        const tasks = Object.values(this.props.tasks);
+        const taskIds = tasks.filter(task => task.checked).map(task => task.id);
+        this.props.removeTasksAction(taskIds);
     };
-
-
 
     onCheckClick = (taskId) => {
        this.props.checkTasksAction(taskId);
     };
 
-
-  //ONE click clean
     onCleanClick = (taskId) => {
-        this.props.removeOneTasksAction(taskId);
-        };
+        this.props.removeTasksAction([taskId]);
+    };
 
-    //add
     onClickHandlerAdd = (e) => {
         e.preventDefault();
 
@@ -62,42 +54,36 @@ export class App extends React.Component {
     {
         return (
             <div className='main'>
-                            <button className='cleanButton' key='cleanAll' onClick={this.onClickHandler}>CLEAN ALL</button>
-                            <button key='cleanDone'onClick={this.onClickHandlerDone}>CLEAN DONE</button>
-                            <input  key='data' className='titleinput' value={this.state.inputData} onChange={this.onInputChange}/>
-                            <button key='add' className='add' onClick={this.onClickHandlerAdd}>ADD </button>
-
+                <button className='cleanButton' key='cleanAll' onClick={this.onClickHandlerCleanAll}>CLEAN ALL</button>
+                <button key='cleanDone'onClick={this.onClickHandlerDone}>CLEAN DONE</button>
+                <input  key='data' className='titleinput' value={this.state.inputData} onChange={this.onInputChange}/>
+                <button key='add' className='add' onClick={this.onClickHandlerAdd}>ADD </button>
 
                 <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
-                             tasks={this.props.tasks}/>
+                             tasks={Object.values(this.props.tasks)}/>
             </div>
         )
     }
 }
-//vzdy zadefinovat, ake action a data chceme pouzit
+
 App.propTypes = {
     setTaskAction: PropTypes.func.isRequired,
-    removeAllTasksAction: PropTypes.func,
-    removeOneTasksAction: PropTypes.func,
+    removeTasksAction: PropTypes.func,
     checkTasksAction: PropTypes.func,
-    removeAllCheckedTasksAction: PropTypes.func,
     tasks: PropTypes.object,
     };
 
-//mapping of state to component props - data from store -> props - konkretne data na kontretnu props z konktet reducera
+
 const mapStateToProps = (state) => ({
     tasks: state.tasks.byId,
 });
 
-//maps actions to props
+
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     setTaskAction,
-    removeAllTasksAction,
-    removeOneTasksAction,
+    removeTasksAction,
     checkTasksAction,
-    removeAllCheckedTasksAction
-}, dispatch);
+    }, dispatch);
 
 
-// connects mapStateToProps and mapDispatchToProps to this component
 export default connect(mapStateToProps, mapDispatchToProps)(App);
