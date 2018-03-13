@@ -21,13 +21,13 @@ export class App extends React.Component {
 
     onClickHandlerCleanAll = (e) => {
         e.preventDefault();
-        const taskIds = Object.keys(this.props.tasks);
+        const taskIds = this.props.tasks.map(task => task.id);
         this.props.removeTasksAction(taskIds);
     };
 
     onClickHandlerDone = (e) => {
         e.preventDefault();
-        const tasks = Object.values(this.props.tasks);
+        const tasks = this.props.tasks;
         const taskIds = tasks.filter(task => task.checked).map(task => task.id);
         this.props.removeTasksAction(taskIds);
     };
@@ -44,7 +44,10 @@ export class App extends React.Component {
         e.preventDefault();
 
         if(this.state.inputData){
-            this.props.setTaskAction(this.state.inputData);
+
+            const taskId = Math.random().toString(20).substring(2);
+
+            this.props.setTaskAction(this.state.inputData, taskId);
             this.setState({inputData:''});
         }
     };
@@ -54,13 +57,13 @@ export class App extends React.Component {
     {
         return (
             <div className='main'>
-                <button className='cleanButton' key='cleanAll' onClick={this.onClickHandlerCleanAll}>CLEAN ALL</button>
-                <button key='cleanDone'onClick={this.onClickHandlerDone}>CLEAN DONE</button>
+                <button className='cleanButton' key='cleanAll' onClick={this.onClickHandlerCleanAll}>clean all</button>
+                <button key='cleanDone'onClick={this.onClickHandlerDone}>clean done</button>
                 <input  key='data' className='titleinput' value={this.state.inputData} onChange={this.onInputChange}/>
-                <button key='add' className='add' onClick={this.onClickHandlerAdd}>ADD </button>
+                <button key='add' className='add' onClick={this.onClickHandlerAdd}>add </button>
 
                 <TaskWrapper onCheckClick={this.onCheckClick} onCleanClick={this.onCleanClick}
-                             tasks={Object.values(this.props.tasks)}/>
+                             tasks={this.props.tasks}/>
             </div>
         )
     }
@@ -70,12 +73,12 @@ App.propTypes = {
     setTaskAction: PropTypes.func.isRequired,
     removeTasksAction: PropTypes.func,
     checkTasksAction: PropTypes.func,
-    tasks: PropTypes.object,
+    tasks: PropTypes.array,
     };
 
 
 const mapStateToProps = (state) => ({
-    tasks: state.tasks.byId,
+    tasks: Object.values(state.tasks.byId)
 });
 
 

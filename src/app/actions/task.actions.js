@@ -1,14 +1,14 @@
 import {SET_TASK, REMOVE_TASKS, CHECK_TASK} from '../reducers/tasks.reducer';
 
-export const setTaskAction = (title) => (dispatch) => {
+export const setTaskAction = (title, taskId) => {
 
     const task = {
-        id: Math.random().toString(20).substring(2),
+        id: taskId,
         title,
         checked: false
     };
 
-    dispatch({type: SET_TASK, payload:task});
+    return {type: SET_TASK, payload:task};
 };
 
 

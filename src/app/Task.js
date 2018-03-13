@@ -20,8 +20,8 @@ export class Task extends React.Component {
         return (
         <div className='container'>
             <span className={`title ${checkedClass}`}> {this.props.task.title} </span>
-            <button onClick={this.onCheckClick}>{this.props.task.checked ? 'UN-CHECK' : 'CHECK'}</button>
-            <button onClick={this.onCleanClick}>CLEAN</button>
+            <button onClick={this.onCheckClick}>{this.props.task.checked ? 'un-check' : 'check'}</button>
+            <button onClick={this.onCleanClick}>clean</button>
         </div>)
     }
 }

@@ -10,7 +10,7 @@ body {
     background-repeat  : no-repeat;
     background-position: center;
     background-size: cover;
-}
+    }
 
 #root {
     height: 100%;
@@ -25,6 +25,7 @@ body {
 }
 
 button {
+    text-transform: uppercase;
     font-weight: bold;
     color:#f1f1f2;
     background: #8e95c3;;
