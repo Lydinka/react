@@ -91,10 +91,10 @@ const mapStateToProps = (state) => ({
 
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    setTaskAction,
-    removeTasksAction,
-    checkTasksAction,
-    pushAction,
+        setTaskAction,
+        removeTasksAction,
+        checkTasksAction,
+        pushAction,
     }, dispatch);
 
 

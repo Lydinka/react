@@ -14,9 +14,10 @@ export class TaskDetailPage extends React.Component {
 
 
     render(){
-        return (<div className='page'>{this.props.task.title}
-            <button onClick={this.onBackClick}>back</button>
-
+        return (<div className='page'>
+                <span className='titleback'>{this.props.task.title}
+                </span>
+            <button  className='back' onClick={this.onBackClick}>back</button>
         </div>);
 
     };

@@ -10,9 +10,7 @@ middlewares.push(thunk);
 
 middlewares.push(routerMiddleware(browserHistory));
 
-
 let middleware = applyMiddleware(...middlewares);
-
 
 if (window.devToolsExtension) {
     middleware = compose(middleware, window.devToolsExtension());

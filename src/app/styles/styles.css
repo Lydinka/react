@@ -31,7 +31,7 @@ button {
     background: #8e95c3;;
     border: 2px solid #8e95c3;;
     border-radius: 6px;
-    padding: 5px 20px;
+    padding: 5px 9px;
     margin: 5px;
 }
 
@@ -53,9 +53,9 @@ button:hover {
     font-weight: bold;
     text-transform: capitalize;
     background: transparent;
-    border: 1px solid #8e95c3;;
+    border: 1px solid #8e95c3;
     border-radius: 6px;
-    width: 250px;
+    width: 300px;
 }
 
 .container {
@@ -83,10 +83,39 @@ button:hover {
     width: 17%;
     border: 1px solid transparent;
     position:absolute;
-    left: 610px;
+    left: 563px;
     font-size:0.98em;
 }
 
 .title.checked {
     background: #b3de81;
+}
+
+.page {
+    margin:0;
+    padding: 0;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+.titleback {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #fff;
+    background: transparent;
+    border-radius: 6px;
+    padding: 0.30em;
+    margin: 0.5em;
+    width: 17%;
+    border: 1px solid #8e95c3;
+
+    left: 572px;
+    font-size:0.98em;
+}
+
+
+.back{
+    padding: 5px 20px;
+    margin: 20px;
 }
